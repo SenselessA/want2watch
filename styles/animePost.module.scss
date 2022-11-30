@@ -1,0 +1,58 @@
+.mainContainer {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 46px;
+}
+
+.poster {
+  background: #FBD2B9;
+}
+
+.infoContainer {
+  padding: 24px;
+  background: #252030d4;
+  box-shadow: 0px 4.04255px 2.02128px 1.01064px rgba(0, 0, 0, 0.25);
+}
+
+.infoItems {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: auto 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+.itemTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  text-align: justify;
+
+  color: #FFFFFF;
+
+  opacity: 0.7;
+}
+
+.itemText {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: justify;
+}
+
+.mapText {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin-right: 12px;
+}
+
+.playerContainer {
+  padding: 24px;
+  background: rgba(251, 210, 185, 0.15);
+  box-shadow: 0px 4.04255px 2.02128px 1.01064px rgba(0, 0, 0, 0.25);
+}

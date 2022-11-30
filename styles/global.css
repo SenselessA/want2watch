@@ -1,0 +1,32 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.6;
+    font-size: 18px;
+    background-color: #201C29;
+    min-height: 100vh;
+    color: #FBD2B9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: #ff5c57;
+    text-decoration: none;
+}
+
+a:hover {
+    /*text-decoration: underline;*/
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
