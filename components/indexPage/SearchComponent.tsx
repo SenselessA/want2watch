@@ -14,7 +14,7 @@ const SearchComponent = ({searchedData}) => {
 				>
 					Вот что мы нашли:
 				</Typography>
-				{Array.from(searchedData.values()).map((data) => {
+				{Array.from(searchedData.values()).map((data: any) => {
 					return  (
 						<AnimeListItem key={data.id} data={data} />
 					)
