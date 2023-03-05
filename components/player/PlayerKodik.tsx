@@ -25,8 +25,8 @@ const PlayerKodik:React.FC<PlayerKodikProps> = ({imdbID, width, height}) => {
         {`
           var kodikAddPlayers = {
             onDomReady: true,
-            foundCallback: function (data, link) { console.log("FOUND"); },
-            notFoundCallback: function (data) { console.log("NOT FOUND"); },
+            foundCallback: function (data, link) { },
+            notFoundCallback: function (data) { },
             imdbID: "${imdbID}",
             width: "${width ?? 610}",
             height: "${height ?? 370}"

@@ -5,8 +5,8 @@ export const playerScript = () => {
         __html: `
               var kodikAddPlayers = {
                 onDomReady: true,
-                foundCallback: function (data, link) { console.log("FOUND"); },
-                notFoundCallback: function (data) { console.log("NOT FOUND"); },
+                foundCallback: function (data, link) { },
+                notFoundCallback: function (data) { },
                 kinopoiskID: "4525118"
               };
             console.log('В ИНДЕКСЕ3 afterInteractive');

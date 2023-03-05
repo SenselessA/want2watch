@@ -52,14 +52,14 @@ const AnimePost = ({post}) => {
 						<Box className={styles.infoItem}>
 							<Typography variant={"body2"} className={styles.itemTitle}>Жанр:</Typography>
 							<Typography variant={"body2"} className={styles.itemText} >
-								{currentPost.material_data.genres?.map(item => <span className={styles.mapText}>{item}</span>)}
+								{currentPost.material_data.genres?.map(item => <span key={item} className={styles.mapText}>{item}</span>)}
 							</Typography>
 						</Box>
 
 						<Box className={styles.infoItem}>
 							<Typography variant={"body2"} className={styles.itemTitle}>Студия:</Typography>
 							<Typography variant={"body2"} className={styles.itemText}>
-								{currentPost.material_data.anime_studios?.map(item => <span className={styles.mapText}>{item}</span>)}
+								{currentPost.material_data.anime_studios?.map(item => <span key={item} className={styles.mapText}>{item}</span>)}
 							</Typography>
 						</Box>
 
@@ -87,14 +87,14 @@ const AnimePost = ({post}) => {
 						<Box className={styles.infoItem}>
 							<Typography variant={"body2"} className={styles.itemTitle}>Страна:</Typography>
 							<Typography variant={"body2"} className={styles.itemText}>
-								{currentPost.material_data.countries?.map(item => <span className={styles.mapText}>{item}</span>)}
+								{currentPost.material_data.countries?.map(item => <span key={item} className={styles.mapText}>{item}</span>)}
 							</Typography>
 						</Box>
 
 						<Box className={styles.infoItem}>
 							<Typography variant={"body2"} className={styles.itemTitle}>Сейю:</Typography>
 							<Typography variant={"body2"} className={styles.itemText}>
-								{currentPost.material_data.actors?.map(item => <span className={styles.mapText}>{item}</span>)}
+								{currentPost.material_data.actors?.map(item => <span key={item} className={styles.mapText}>{item}</span>)}
 							</Typography>
 						</Box>
 
