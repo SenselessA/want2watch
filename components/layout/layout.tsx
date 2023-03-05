@@ -73,7 +73,10 @@ export default function Layout(
                 <Link href="/">
                   <a>
                     <Box display={'flex'} alignItems={'center'}>
-                      <Image src={'/images/logo.svg'} width={48} height={48}/>
+                        <Box className={styles.logo}>
+                            <Image src={'/images/logo.svg'} layout='fill' />
+                        </Box>
+
                       <Box ml={2}>
                         <Typography className={styles.headerTitle} variant={"body2"}>Want2Watch</Typography>
                       </Box>

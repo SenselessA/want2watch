@@ -1,4 +1,6 @@
 .mainContainer {
+  margin-top: 42px;
+
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 2fr;
@@ -18,9 +20,18 @@
 .infoItems {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: auto 1fr;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  grid-template-columns: auto;
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+}
+
+.infoItem {
+  display: inline-block;
+  flex-wrap: wrap;
+}
+
+.infoItem p {
+  display: inline;
 }
 
 .itemTitle {
@@ -36,13 +47,14 @@
 }
 
 .itemText {
+  margin-left: 8px;
+
   font-weight: 300;
   font-size: 16px;
   line-height: 19px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  text-align: justify;
 }
 
 .mapText {
@@ -52,7 +64,115 @@
 }
 
 .playerContainer {
+  margin-top: 48px;
   padding: 24px;
   background: rgba(251, 210, 185, 0.15);
   box-shadow: 0px 4.04255px 2.02128px 1.01064px rgba(0, 0, 0, 0.25);
+}
+
+@media screen and (max-width: 1200px) {
+  .mainContainer {
+    margin-top: 32px;
+
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 3fr;
+    grid-column-gap: 24px;
+  }
+
+  .playerContainer {
+    margin-top: 32px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .poster {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+  }
+
+  .infoItems {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: auto;
+    grid-column-gap: 12px;
+    grid-row-gap: 8px;
+  }
+
+  .infoItem {
+    display: inline-block;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .playerContainer {
+    margin-top: 24px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .mainContainer {
+    margin-top: 24px;
+    position: relative;
+    grid-template-columns: auto;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+
+  .playerContainer {
+    border-radius: 16px;
+  }
+
+  .poster {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    background: transparent;
+  }
+
+  .poster {
+    margin-bottom: 12px;
+  }
+
+  .infoContainer {
+    z-index: 3;
+    background-color: #252030de;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .itemTestTitle {
+    display: none;
+  }
+
+  .infoItem {
+    margin-bottom: 0px;
+  }
+
+  .mainContainer {
+    border-radius: 12px;
+  }
+
+  .playerContainer {
+    padding: 16px;
+    border-radius: 12px;
+    background: rgba(251, 210, 185, 0.05);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .poster {
+    position: static;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .infoContainer {
+    padding: 0;
+  }
 }

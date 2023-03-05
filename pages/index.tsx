@@ -1,13 +1,9 @@
 import Layout from "../components/layout/layout";
-import {Box, CircularProgress, InputAdornment, Paper, Stack, TextField, Typography} from "@mui/material";
-import React, {ReactElement, useCallback, useEffect, useState} from "react";
+import {Box, CircularProgress, Paper, Typography} from "@mui/material";
+import React, {ReactElement, useState} from "react";
 import Image from 'next/image';
-import Link from 'next/link';
 const { KODIK_API_KEY } = process.env;
-import {getSubString} from "../lib/getSubString";
 import useInView from "react-cool-inview";
-import {translitString} from "../lib/translitString";
-import {debounce} from "../lib/debounce";
 import {AnimeListItem} from "../components/animeListItem/AnimeListItem";
 import SearchInput from "../components/theme/SearchInput";
 
@@ -34,10 +30,21 @@ function HomePage({ initList }) {
         types: "anime-serial",
       }
 
-      let list: any = {}
+      let list: any = {};
+      let nextPage = new URLSearchParams(currentListInfo.next_page).get('page');
+
+      if (!nextPage) {
+        nextPage = currentListInfo.next_page;
+      }
 
       try {
-        const res = await fetch(currentListInfo.next_page)
+          const res = await fetch('api/list_get_next_page',
+              {
+                  method: "POST",
+                  body: JSON.stringify({
+                      next_page: nextPage,
+                  })}
+          )
 
         list = await res.json()
         if (list.results) {
@@ -47,7 +54,7 @@ function HomePage({ initList }) {
         observe()
 
 
-      }catch (e) {
+      } catch (e) {
         console.log('api error', e)
       }
     },
@@ -56,37 +63,45 @@ function HomePage({ initList }) {
   const onSearchChange = value => {
     setSearchValue(value)
     clearTimeout(filterTimeout)
-    if (value.length <= 2) return setSearchedData(new Map())
+    if (value.length <= 2) {
+      if (isSearchingProcess) {
+        setSearchingProcess(false)
+      }
+      return setSearchedData(new Map())
+    }
 
     setSearchingProcess(true)
 
     const newTimeOut = setTimeout(async () => {
       const dataReq = {
-        token: process.env.NEXT_PUBLIC_KODIK_API_KEY,
         title: value,
         with_material_data: "true",
         types: "anime-serial",
       }
 
-      const testres = await fetch('api/test',
+      const searchingResponse = await fetch('api/search',
         {
           method: "POST",
           body: JSON.stringify({
-            url: `https://kodikapi.com/search?${new URLSearchParams(dataReq)}`
+            url: `search?`,
+            data: dataReq
           })
         }
       )
-      const response = await testres.json()
-      setSearchingProcess(false)
 
-      if (response.results) {
-        const map = new Map();
+      try {
+        const response = await searchingResponse.json()
+        if (response.results) {
+          const map = new Map();
 
-        response.results.forEach(item => {
-          map.set(item.title, item)
-        })
-
-        return setSearchedData(map);
+          response.results.forEach(item => {
+            map.set(item.title, item)
+          })
+          setSearchingProcess(false)
+          setSearchedData(map);
+        }
+      } catch (e) {
+        console.log('e', e);
       }
     }, 500);
 
@@ -96,40 +111,42 @@ function HomePage({ initList }) {
 
     return (
         <Box height={'100%'}>
-          <Box display={'flex'} alignItems={'center'} mt={5}>
-            <Image src={"/images/logo.svg"} width={94} height={94} className={styles.logo} />
+          <Box className={styles.mainContainer}>
+            <Box className={styles.logo}>
+              <Image src={"/images/logo.svg"} width={94} height={94} />
+            </Box>
+
             <Box marginLeft={"16px"}>
               <Typography variant={"h2"} className={styles.mainTitle} component={"p"} align={'center'}>
                 Want2Watch
               </Typography>
             </Box>
-            <Box mr={1}>
-              <Typography variant={"body1"} className={styles.separator} component={"p"} align={'center'}>
-                —
-              </Typography>
-            </Box>
-            <Box>
-              <Typography variant={"h1"} className={styles.mainDescription} align={'center'}>
-                портал для просмотра аниме онлайн бесплатно
-              </Typography>
-            </Box>
+
+            <Typography variant={"body1"} className={styles.separator} component={"p"} align={'center'}>
+              —
+            </Typography>
+
+            <Typography variant={"h1"} className={styles.mainDescription} align={'center'}>
+              портал для просмотра аниме онлайн бесплатно
+            </Typography>
           </Box>
 
 
-            <Box mt={5} component={"section"}>
+            <Box component={"section"}>
                 <Typography
                   variant={"body2"}
-                  marginTop={"20px"}
+                  className={styles.mainBodyText}
                 >
                   Все любят смотреть аниме онлайн дома в уютной обстановке, но часто требуется приложить немалые усилия, для того, чтобы найти качественный перевод и озвучку.  У нас есть отличная новость для поклонников аниме сериалов! Наш проект Want2Wath посвящен онлайн-просмотру аниме. Вам не придется искать каждую серию аниме без смс и регистрации - все лучшие аниме бесплатно в хорошем качестве уже есть на нашем портале!
                   Мы сами очень любим этот жанр и поэтому постарались сделать наш сайт как можно более удобным и захватывающим. Приятного просмотра!
                 </Typography>
             </Box>
 
-            <Box mt={6} display={"flex"} justifyContent={"center"} position={"relative"}>
+            <Box className={styles.searchInputContainer}>
                 <SearchInput
                   searchValue={searchValue}
                   setSearchValue={onSearchChange}
+                  size={'small'}
                 />
 
               {isSearchingProcess ?
@@ -147,6 +164,7 @@ function HomePage({ initList }) {
               variant={"h5"}
               align={"center"}
               component={"h2"}
+              className={styles.subTitle}
             >
               Твои любимые Аниме
             </Typography>

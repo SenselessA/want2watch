@@ -6,7 +6,7 @@ import Image from "next/image";
 import {Box} from "@mui/material";
 
 const SlickSlider = ({sliderListData}) => {
-	console.log('sliderListData', sliderListData);
+/*	console.log('sliderListData', sliderListData);*/
 
 	const settings = {
 		className: "center",
@@ -21,7 +21,7 @@ const SlickSlider = ({sliderListData}) => {
 		<div>
 			<Slider {...settings}>
 				{sliderListData.map((data) => {
-					console.log('data', data)
+				/*	console.log('data', data)*/
 					return (
 						<Box key={data.id} flex={'none'} width={"143px"} height={"200px"} position={"relative"} marginRight={"18px"}>
 							<Link href={`/anime/${translitString(data.title)}__${data.id}`}>

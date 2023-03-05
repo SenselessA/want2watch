@@ -20,6 +20,9 @@
 
 .logo {
     flex-shrink: 0;
+    position: relative;
+    height: 94px;
+    width: 94px;
 }
 
 .mainTitle {
@@ -47,8 +50,8 @@
 
 .mainDescription {
     font-weight: 300;
-    font-size: 36px;
-    line-height: 44px;
+    font-size: 32px;
+    line-height: 42px;
     display: flex;
     align-items: center;
     text-align: justify;
@@ -59,10 +62,14 @@
 
 .searchField {
     font-weight: 300;
-    font-size: 24px;
-    line-height: 33px;
+    font-size: 22px;
+    line-height: 28px;
 
     color: #FBD2B9;
+}
+
+.inputSearchField {
+    padding: 0px;
 }
 
 .searchContainer {
@@ -72,9 +79,116 @@
     z-index: 2;
     background-color: rgb(32 28 41);
     margin-top: 16px;
-    padding: 16px;
+    /*padding: 16px;*/
     display: flex;
     flex-direction: column;
     row-gap: 16px;
     width: 100%;
+}
+
+.inputLogoContainer {
+    position: relative;
+    width: 42px;
+    height: 42px;
+}
+
+.mainContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 24px;
+    column-gap: 12px;
+    row-gap: 8px;
+}
+
+.mainBodyText {
+    margin-top: 20px;
+}
+
+.searchInputContainer {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .mainContainer {
+        flex-direction: column;
+    }
+
+    .separator {
+        display: none;
+    }
+
+    .mainDescription {
+        letter-spacing: normal;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .mainContainer {
+        flex-direction: column;
+        margin-top: 14px;
+    }
+
+    .separator {
+        display: none;
+    }
+
+    .mainBodyText {
+        font-size: 12px;
+    }
+
+    .logo {
+        height: 40px;
+        width: 40px;
+    }
+
+    .mainTitle {
+        font-size: 32px;
+        line-height: normal;
+    }
+
+    .mainDescription {
+        font-size: 26px;
+        line-height: normal;
+    }
+
+    .searchInputContainer {
+        margin-top: 24px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .inputSearchField {
+    }
+
+    .searchField {
+        font-size: 16px;
+    }
+
+    .inputLogoContainer {
+        position: relative;
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .mainDescription {
+        font-size: 20px;
+    }
+
+    .mainBodyText {
+        margin-top: 10px;
+    }
+
+    .subTitle {
+    }
+
+    .animeShortDescription {
+        display: none;
+    }
 }

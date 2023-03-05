@@ -35,10 +35,12 @@ export const AnimeListItem = ({
 				</Typography>
 				<Typography
 					variant={"body2"}
+					marginTop={'4px'}
 				>
 					{data.title_orig}
 				</Typography>
-				<Stack direction="row" flexWrap={"wrap"} alignItems={'center'} spacing={2} margin={"4px 0"}>
+
+				<Stack direction="row" flexWrap={"wrap"} alignItems={'center'} columnGap={2} margin={"4px 0"}>
 					<Typography variant={"body2"}>
 						{data.year}
 					</Typography>
@@ -46,12 +48,14 @@ export const AnimeListItem = ({
 						(genre)=><Typography variant={"body2"} key={genre}>{genre}</Typography>
 					)}
 				</Stack>
-				<Typography variant={"body2"}>
+
+				<Typography variant={"body2"} className={styles.animeShortDescription}>
 					{
 						data.material_data.description
 						&& getSubString(data.material_data.description, 500)
 					}
 				</Typography>
+
 			</Box>
 
 		</Paper>

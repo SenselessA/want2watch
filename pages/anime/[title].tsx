@@ -7,11 +7,10 @@ const { KODIK_API_KEY } = process.env;
 
 const AnimePost = ({post}) => {
 	const currentPost = post.results[0]
-	console.log('check', currentPost);
-	return (
-		<Box marginTop={"46px"}>
-			<Box className={styles.mainContainer}>
 
+	return (
+		<Box>
+			<Box className={styles.mainContainer}>
 				<Box>
 					<Box className={styles.poster}>
 						<img src={currentPost.material_data.poster_url} alt={currentPost.title} />
@@ -20,9 +19,9 @@ const AnimePost = ({post}) => {
 
 				<Box className={styles.infoContainer}>
 					<Box mb={1} className={styles.infoItem}>
-						<Typography variant={"h4"} component={"h1"}>{currentPost.title}</Typography>
+						<Typography className={styles.title} variant={"h4"} component={"h1"}>{currentPost.title}</Typography>
 						<Box mt={1} mb={1}>
-							<Typography variant={"h6"} component={"h2"} className={styles.itemText}>
+							<Typography variant={"h6"} component={"h2"} className={styles.itemText + ' ' + styles.itemTestTitle}>
 								{currentPost.other_title} / {currentPost.title_orig}
 							</Typography>
 						</Box>
@@ -30,66 +29,90 @@ const AnimePost = ({post}) => {
 					</Box>
 
 					<Box className={styles.infoItems}>
-						<Typography variant={"body2"} className={styles.itemTitle} >Тип:</Typography>
-						<Typography variant={"body2"} className={styles.itemText} >{currentPost.type}</Typography>
+						<Box className={styles.infoItem}>
+							<Typography variant={"body2"} className={styles.itemTitle} >Тип:</Typography>
+							<Typography variant={"body2"} className={styles.itemText} >{currentPost.type}</Typography>
+						</Box>
 
-						<Typography variant={"body2"} className={styles.itemTitle}>Эпизоды:</Typography>
-						<Typography variant={"body2"} className={styles.itemText} >{currentPost.episodes_count}</Typography>
+						<Box className={styles.infoItem}>
+							<Typography variant={"body2"} className={styles.itemTitle}>Эпизоды:</Typography>
+							<Typography variant={"body2"} className={styles.itemText} >{currentPost.episodes_count}</Typography>
+						</Box>
 
-						<Typography variant={"body2"} className={styles.itemTitle}>Статус:</Typography>
-						<Typography variant={"body2"} className={styles.itemText} >{currentPost.material_data.all_status}</Typography>
+						<Box className={styles.infoItem}>
+							<Typography variant={"body2"} className={styles.itemTitle}>Статус:</Typography>
+							<Typography variant={"body2"} className={styles.itemText} >{currentPost.material_data.all_status}</Typography>
+						</Box>
 
-						<Typography variant={"body2"} className={styles.itemTitle}>Старт выхода:</Typography>
-						<Typography variant={"body2"} className={styles.itemText} >{currentPost.year}</Typography>
+						<Box className={styles.infoItem}>
+							<Typography variant={"body2"} className={styles.itemTitle}>Старт выхода:</Typography>
+							<Typography variant={"body2"} className={styles.itemText} >{currentPost.year}</Typography>
+						</Box>
 
+						<Box className={styles.infoItem}>
+							<Typography variant={"body2"} className={styles.itemTitle}>Жанр:</Typography>
+							<Typography variant={"body2"} className={styles.itemText} >
+								{currentPost.material_data.genres?.map(item => <span className={styles.mapText}>{item}</span>)}
+							</Typography>
+						</Box>
 
-						<Typography variant={"body2"} className={styles.itemTitle}>Жанр:</Typography>
-						<Typography variant={"body2"} className={styles.itemText} >
-							{currentPost.material_data.genres?.map(item => <span className={styles.mapText}>{item}</span>)}
-						</Typography>
+						<Box className={styles.infoItem}>
+							<Typography variant={"body2"} className={styles.itemTitle}>Студия:</Typography>
+							<Typography variant={"body2"} className={styles.itemText}>
+								{currentPost.material_data.anime_studios?.map(item => <span className={styles.mapText}>{item}</span>)}
+							</Typography>
+						</Box>
 
-						<Typography variant={"body2"} className={styles.itemTitle}>Студия:</Typography>
-						<Typography variant={"body2"} className={styles.itemText}>
-							{currentPost.material_data.anime_studios?.map(item => <span className={styles.mapText}>{item}</span>)}
-						</Typography>
+						<Box className={styles.infoItem}>
+							<Typography variant={"body2"} className={styles.itemTitle}>Рейтинг MPAA:</Typography>
+							<Typography variant={"body2"} className={styles.itemText}>
+								{currentPost.material_data.rating_mpaa}
+							</Typography>
+						</Box>
 
-						<Typography variant={"body2"} className={styles.itemTitle}>Рейтинг MPAA:</Typography>
-						<Typography variant={"body2"} className={styles.itemText}>
-							{currentPost.material_data.rating_mpaa}
-						</Typography>
+						<Box className={styles.infoItem}>
+							<Typography variant={"body2"} className={styles.itemTitle}>Возрастные ограничения:</Typography>
+							<Typography variant={"body2"} className={styles.itemText}>
+								{currentPost.material_data.minimal_age}
+							</Typography>
+						</Box>
 
-						<Typography variant={"body2"} className={styles.itemTitle}>Возрастные ограничения:</Typography>
-						<Typography variant={"body2"} className={styles.itemText}>
-							{currentPost.material_data.minimal_age}
-						</Typography>
+						<Box className={styles.infoItem}>
+							<Typography variant={"body2"} className={styles.itemTitle}>Длительность:</Typography>
+							<Typography variant={"body2"} className={styles.itemText}>
+								{currentPost.material_data.duration} мин. ~ серия
+							</Typography>
+						</Box>
 
-						<Typography variant={"body2"} className={styles.itemTitle}>Длительность:</Typography>
-						<Typography variant={"body2"} className={styles.itemText}>
-							{currentPost.material_data.duration} мин. ~ серия
-						</Typography>
+						<Box className={styles.infoItem}>
+							<Typography variant={"body2"} className={styles.itemTitle}>Страна:</Typography>
+							<Typography variant={"body2"} className={styles.itemText}>
+								{currentPost.material_data.countries?.map(item => <span className={styles.mapText}>{item}</span>)}
+							</Typography>
+						</Box>
 
-						<Typography variant={"body2"} className={styles.itemTitle}>Страна:</Typography>
-						<Typography variant={"body2"} className={styles.itemText}>
-							{currentPost.material_data.countries?.map(item => <span className={styles.mapText}>{item}</span>)}
-						</Typography>
+						<Box className={styles.infoItem}>
+							<Typography variant={"body2"} className={styles.itemTitle}>Сейю:</Typography>
+							<Typography variant={"body2"} className={styles.itemText}>
+								{currentPost.material_data.actors?.map(item => <span className={styles.mapText}>{item}</span>)}
+							</Typography>
+						</Box>
 
-						<Typography variant={"body2"} className={styles.itemTitle}>Сейю:</Typography>
-						<Typography variant={"body2"} className={styles.itemText}>
-							{currentPost.material_data.actors?.map(item => <span className={styles.mapText}>{item}</span>)}
-						</Typography>
+						<Box className={styles.infoItem}>
+							<Typography variant={"body2"} className={styles.itemTitle}>Сюжет:</Typography>
+							<Typography variant={"body2"} className={styles.itemText}>
+								{currentPost.material_data.anime_description}
+							</Typography>
+						</Box>
 
-						<Typography variant={"body2"} className={styles.itemTitle}>Сюжет:</Typography>
-						<Typography variant={"body2"} className={styles.itemText}>
-							{currentPost.material_data.anime_description}
-						</Typography>
 					</Box>
 				</Box>
 
 			</Box>
 
-			<Box mt={6}  className={styles.playerContainer}>
-				<Box>
+			<Box className={styles.playerContainer}>
 
+				<Box>
 					<Box display={'flex'} justifyContent={'center'}>
 						<PlayerKodik imdbID={currentPost.imdb_id} width={'100%'} height={'500px'} />
 					</Box>

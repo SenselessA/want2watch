@@ -17,9 +17,44 @@
 .headerTitle {
     font-weight: 500;
     font-size: 48px;
-    line-height: 56px;
+    line-height: 1.235;
     letter-spacing: 0.02em;
     color: #FFECE0;
     opacity: 0.9;
     text-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+    position: relative;
+    display: block;
+    width: 46px;
+    height: 46px;
+}
+
+@media screen and (max-width: 1200px) {
+
+    .headerTitle {
+        font-weight: 500;
+        font-size: 36px;
+    }
+
+    .logo {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media screen and (max-width: 720px) {}
+
+@media screen and (max-width: 620px) {}
+
+@media screen and (max-width: 480px) {
+    .logo {
+        width: 32px;
+        height: 32px;
+    }
+    .headerTitle {
+        font-weight: 500;
+        font-size: 28px;
+    }
 }

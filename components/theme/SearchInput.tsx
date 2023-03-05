@@ -1,12 +1,14 @@
 import React from 'react';
-import {InputAdornment, TextField} from "@mui/material";
+import {Box, InputAdornment, TextField} from "@mui/material";
 import Image from "next/image";
 import styles from "../../styles/index.module.scss";
 
-const SearchInput = ({searchValue, setSearchValue}) => {
+const SearchInput = ({searchValue, setSearchValue, size}) => {
 	return (
 		<TextField
+			size={size ? size : 'small'}
 			fullWidth={true}
+			className={styles.inputSearchField}
 			sx={{
 				'& .MuiInputBase-colorPrimary': {
 					border: "2px solid #FBD2B9",
@@ -24,7 +26,9 @@ const SearchInput = ({searchValue, setSearchValue}) => {
 			InputProps={{
 				endAdornment: (
 					<InputAdornment position="start">
-						<Image src={"/images/logo.svg"} width={"42px"} height={"42px"} />
+						<Box className={styles.inputLogoContainer}>
+							<Image src={"/images/logo.svg"} layout='fill' />
+						</Box>
 					</InputAdornment>
 				),
 				className: styles.searchField,
