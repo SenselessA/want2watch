@@ -3,7 +3,7 @@
 
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: auto 2fr;
   grid-column-gap: 46px;
 }
 
