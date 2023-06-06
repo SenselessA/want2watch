@@ -7,6 +7,7 @@ import { StyledEngineProvider } from '@mui/material/styles';
 /*import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";*/
 import '../styles/global.css'
+import { Analytics } from '@vercel/analytics/react';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -30,6 +31,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
               `}
             </Script>
           </StyledEngineProvider>
+          <Analytics />
         </>
     )
 }
