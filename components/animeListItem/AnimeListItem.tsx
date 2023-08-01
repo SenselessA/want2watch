@@ -6,14 +6,12 @@ import Image from "next/image";
 import {getSubString} from "../../lib/getSubString";
 import React from "react";
 
-//TODO сделать гридами картинку и текст и попробовать в нём отрисовать картинку обложки
-
 export const AnimeListItem = ({
 		data
 	}) => {
 	return (
 		<Paper key={data.id} className={styles.listItemContainer}>
-			<Box flex={'none'} width={"143px"} height={"200px"} marginRight={"18px"}>
+			<Box className={'h-[120px] w-[90px] sm:w-[143px] sm:h-[200px] mr-2.5 sm:mr-4'} flex={'none'}>
 				<Link href={`/anime/${translitString(data.title)}__${data.id}`}>
 					<a style={{
 						width: "100%",

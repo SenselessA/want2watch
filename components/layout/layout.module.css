@@ -4,6 +4,7 @@
     box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .backToHome {
@@ -46,15 +47,26 @@
 
 @media screen and (max-width: 720px) {}
 
-@media screen and (max-width: 620px) {}
-
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 640px) {
     .logo {
         width: 32px;
         height: 32px;
     }
+
     .headerTitle {
         font-weight: 500;
         font-size: 28px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo {
+        width: 24px;
+        height: 24px;
+    }
+
+    .headerTitle {
+        font-weight: 500;
+        font-size: 22px;
     }
 }

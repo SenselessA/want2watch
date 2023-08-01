@@ -1,7 +1,6 @@
 import Layout from "../components/layout/layout";
 import {Box, CircularProgress, Paper, Typography} from "@mui/material";
 import React, {ReactElement, useState} from "react";
-import Image from 'next/image';
 const { KODIK_API_KEY } = process.env;
 import useInView from "react-cool-inview";
 import {AnimeListItem} from "../components/animeListItem/AnimeListItem";
@@ -112,10 +111,6 @@ function HomePage({ initList }) {
     return (
         <Box height={'100%'}>
           <Box className={styles.mainContainer}>
-            <Box className={styles.logo}>
-              <Image src={"/images/logo.svg"} width={94} height={94} />
-            </Box>
-
             <Box marginLeft={"16px"}>
               <Typography variant={"h2"} className={styles.mainTitle} component={"p"} align={'center'}>
                 Want2Watch
@@ -130,7 +125,6 @@ function HomePage({ initList }) {
               портал для просмотра аниме онлайн бесплатно
             </Typography>
           </Box>
-
 
             <Box component={"section"}>
                 <Typography
@@ -159,7 +153,7 @@ function HomePage({ initList }) {
 
 
           {searchValue.length <= 2 &&
-          <Box component={"section"} mt={5}>
+          <Box component={"section"} className={'mt-4 sm:mt-6'}>
             <Typography
               variant={"h5"}
               align={"center"}

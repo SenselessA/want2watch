@@ -1,12 +1,14 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import React from "react";
+import React, {useState} from "react";
 import {Box, Container, Typography} from "@mui/material";
 import Image from "next/image"
 import SearchInput from "../theme/SearchInput";
 import SearchAutoInput from '../theme/SearchAutoInput';
 
 import styles from './layout.module.css'
+import {Header} from "../header/Header";
+import {Modal} from "../modal/Modal";
 
 export const siteName = 'Want2Watch'
 export const siteTitle = 'Смотреть Фильмы Аниме Сериалы онлайн бесплатно в хорошем качестве'
@@ -22,7 +24,8 @@ export default function Layout(
         home?: boolean
     }) {
 
-    // @ts-ignore
+
+
     return (
         <Box minHeight={'100vh'}>
             <Head>
@@ -67,35 +70,16 @@ export default function Layout(
                 />*/}
             </Head>
 
-          {!home && (
-            <header className={styles.header}>
-              <Box display={'flex'} alignItems={'center'} justifyContent={'start'} marginLeft={"8%"}>
-                <Link href="/">
-                  <a>
-                    <Box display={'flex'} alignItems={'center'}>
-                        <Box className={styles.logo}>
-                            <Image src={'/images/logo.svg'} layout='fill' />
-                        </Box>
+            <Header />
 
-                      <Box ml={2}>
-                        <Typography className={styles.headerTitle} variant={"body2"}>Want2Watch</Typography>
-                      </Box>
-                    </Box>
-                  </a>
-                </Link>
-              </Box>
-            </header>
-          )}
-
-
-            <Container maxWidth={"lg"}>
+            <Container maxWidth={"lg"} className={'px-2 sm:px-6'}>
                 <main>{children}</main>
             </Container>
 
             {!home && (
                 <div className={styles.backToHome}>
                     <Link href="/">
-                        <a>← Back to home</a>
+                        <a>← На главную</a>
                     </Link>
                 </div>
             )}
