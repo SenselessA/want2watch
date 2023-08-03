@@ -10,7 +10,7 @@ import {
 } from "./types";
 
 const BASE_URL = 'http://localhost:8080/api/v1/';
-const API_URL = 'http://45.9.42.106:8080/api/v1/'
+const API_URL = 'https://want2watch.store/api/v1/'
 
 export const authApi = axios.create({
   baseURL: API_URL,
