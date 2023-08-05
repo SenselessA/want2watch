@@ -9,6 +9,7 @@ import cn from "classnames";
 import {useStateContext} from "../../context";
 import {FavoriteApi, MoviesApi, RatingApi} from "../../api/auth";
 import {MovieByIdOutput} from "../../api/types";
+const { KODIK_API_KEY } = process.env;
 
 const AnimePost = ({post}: {post: MovieByIdOutput}) => {
 	const [rating, setRating] = React.useState<number | null>();
@@ -157,7 +158,7 @@ const AnimePost = ({post}: {post: MovieByIdOutput}) => {
 						<Box className={styles.infoItem}>
 							<Typography variant={"body2"} className={styles.itemTitle}>Жанр:</Typography>
 							<Typography variant={"body2"} className={styles.itemText} >
-								{post.genres.map(item => <span key={item} className={styles.mapText}>{item}</span>)}
+								{post.genres?.map(item => <span key={item} className={styles.mapText}>{item}</span>)}
 							</Typography>
 						</Box>
 
@@ -239,14 +240,71 @@ export async function getServerSideProps(context) {
 	const id = context.params.title.match(regexp)[0];
 
 	try {
-		const response = await MoviesApi.getMovieById(id)
+		const response = await MoviesApi.getMovieById(id + '1')
+
+		if (response.status != 200) {
+			throw new Error('not found');
+		}
+
 		return {
 			props: {
 				post: response.data,
 			},
 		}
 	} catch (e) {
-		console.log('api post error', e)
+		// console.log('api post error', e)
+
+		const data = {
+			token: KODIK_API_KEY,
+			id: id,
+			with_material_data: "true",
+			types: "anime-serial",
+		}
+
+		try {
+			const res = await fetch(
+				`https://kodikapi.com/search?${new URLSearchParams(data)}`
+			)
+			const post = await res.json()
+
+			const currentPost = post.results[0];
+
+			const returnDataFromKodik: MovieByIdOutput = {
+				id,
+				description: currentPost.material_data.description,
+				minimalAge: currentPost.material_data.minimal_age || null,
+				episodesCount: currentPost.episodes_count,
+				otherTitle: currentPost.other_title,
+				titleOrig: currentPost.title_orig,
+				imdbVotes: currentPost.material_data.imdb_votes || null,
+				kinopoiskVotes: currentPost.material_data.kinopoisk_votes || null,
+				imdbRating: currentPost.material_data.imdb_rating || null,
+				kinopoiskRating: currentPost.material_data.kinopoisk_rating || null,
+				actors: currentPost.material_data.actors  || null,
+				allStatus: currentPost.material_data.all_status,
+				title: currentPost.title,
+				countries: currentPost.material_data.countries || null,
+				duration: currentPost.material_data.duration,
+				link: currentPost.link,
+				genres: currentPost.material_data.genres || null,
+				type: currentPost.type,
+				year: currentPost.year,
+				posterUrl: currentPost.material_data.poster_url,
+			}
+
+			return {
+				props: {
+					post: returnDataFromKodik,
+				},
+			}
+		} catch (e) {
+			 console.log('api post error', e)
+			return {
+				props: {
+					post: {},
+				},
+			}
+		}
 	}
 }
 
