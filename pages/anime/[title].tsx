@@ -240,7 +240,7 @@ export async function getServerSideProps(context) {
 	const id = context.params.title.match(regexp)[0];
 
 	try {
-		const response = await MoviesApi.getMovieById(id + '1')
+		const response = await MoviesApi.getMovieById(id)
 
 		if (response.status != 200) {
 			throw new Error('not found');
