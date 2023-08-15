@@ -69,7 +69,7 @@
 }
 
 .inputSearchField {
-    padding: 0px;
+    padding: 0;
 }
 
 .searchContainer {
@@ -79,7 +79,6 @@
     z-index: 2;
     background-color: rgb(32 28 41);
     margin-top: 16px;
-    /*padding: 16px;*/
     display: flex;
     flex-direction: column;
     row-gap: 16px;
@@ -98,10 +97,6 @@
     margin-top: 24px;
     column-gap: 12px;
     row-gap: 8px;
-}
-
-.mainBodyText {
-    margin-top: 20px;
 }
 
 .searchInputContainer {
@@ -137,10 +132,6 @@
         display: none;
     }
 
-    .mainBodyText {
-        font-size: 12px;
-    }
-
     .logo {
         height: 40px;
         width: 40px;
@@ -162,9 +153,6 @@
         margin-right: auto;
     }
 
-    .inputSearchField {
-    }
-
     .searchField {
         font-size: 16px;
     }
@@ -179,10 +167,6 @@
 @media screen and (max-width: 680px) {
     .mainDescription {
         font-size: 20px;
-    }
-
-    .mainBodyText {
-        margin-top: 10px;
     }
 
     .subTitle {

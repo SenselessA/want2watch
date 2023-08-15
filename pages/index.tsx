@@ -17,7 +17,7 @@ function HomePage({ initList }) {
     const [isSearchingProcess, setSearchingProcess] = useState(false)
     const [filterTimeout, setFilterTimeout] = useState()
 
-  const { observe, unobserve, inView, scrollDirection, entry } = useInView({
+  const { observe } = useInView({
     threshold: 0, // Default is 0
     onEnter: async ({ unobserve, observe }) => {
       unobserve();
@@ -110,31 +110,35 @@ function HomePage({ initList }) {
 
     return (
         <Box height={'100%'}>
-          <Box className={styles.mainContainer}>
-            <Box marginLeft={"16px"}>
-              <Typography variant={"h2"} className={styles.mainTitle} component={"p"} align={'center'}>
-                Want2Watch
+          <section>
+            <Box className={styles.mainContainer}>
+              <Box>
+                <h1 className={'flex items-center lg:gap-x-4 gap-x-2'}>
+                  <span className={'xl:text-4xl lg:text-3xl md:text-2xl text-xl text-[#ffece0]'}>Want2watch</span>
+                  —
+                  <span className={'lg:text-2xl md:text-xl sm:text-xl text-md'}>смотреть аниме онлайн бесплатно</span>
+                </h1>
+              </Box>
+
+              <Typography variant={"body1"} className={styles.separator} component={"p"} align={'center'}>
+
+              </Typography>
+
+              <Typography variant={"h1"} className={styles.mainDescription} align={'center'}>
+
               </Typography>
             </Box>
-
-            <Typography variant={"body1"} className={styles.separator} component={"p"} align={'center'}>
-              —
-            </Typography>
-
-            <Typography variant={"h1"} className={styles.mainDescription} align={'center'}>
-              портал для просмотра аниме онлайн бесплатно
-            </Typography>
-          </Box>
 
             <Box component={"section"}>
                 <Typography
                   variant={"body2"}
-                  className={styles.mainBodyText}
+                  className={'mt-1 lg:mt-4'}
                 >
-                  Все любят смотреть аниме онлайн дома в уютной обстановке, но часто требуется приложить немалые усилия, для того, чтобы найти качественный перевод и озвучку.  У нас есть отличная новость для поклонников аниме сериалов! Наш проект Want2Wath посвящен онлайн-просмотру аниме. Вам не придется искать каждую серию аниме без смс и регистрации - все лучшие аниме бесплатно в хорошем качестве уже есть на нашем портале!
+                  Все любят смотреть аниме онлайн дома в уютной обстановке, но часто требуется приложить немалые усилия, для того, чтобы найти качественный перевод и озвучку.  У нас есть отличная новость для поклонников аниме сериалов! Наш проект Want2watch посвящен онлайн-просмотру аниме. Вам не придется искать каждую серию аниме без смс и регистрации - все лучшие аниме бесплатно в хорошем качестве уже есть на нашем портале!
                   Мы сами очень любим этот жанр и поэтому постарались сделать наш сайт как можно более удобным и захватывающим. Приятного просмотра!
                 </Typography>
             </Box>
+          </section>
 
             <Box className={styles.searchInputContainer}>
                 <SearchInput
@@ -151,51 +155,52 @@ function HomePage({ initList }) {
                 searchValue.length > 2 && <SearchComponent searchedData={searchedData} />}
             </Box>
 
+          <section>
+            {searchValue.length <= 2 &&
+            <Box component={"section"} className={'mt-4 sm:mt-6'}>
+              <Typography
+                variant={"h5"}
+                align={"center"}
+                component={"h2"}
+                className={styles.subTitle}
+              >
+                Твои любимые Аниме
+              </Typography>
 
-          {searchValue.length <= 2 &&
-          <Box component={"section"} className={'mt-4 sm:mt-6'}>
-            <Typography
-              variant={"h5"}
-              align={"center"}
-              component={"h2"}
-              className={styles.subTitle}
-            >
-              Твои любимые Аниме
-            </Typography>
 
+              <Box marginTop={"32px"} display={"flex"} flexDirection={"column"} rowGap={"24px"}>
 
-            <Box marginTop={"32px"} display={"flex"} flexDirection={"column"} rowGap={"24px"}>
+                {
+                  list?.map((listItem) => {
+                    if (listItem?.material_data?.poster_url && listItem.material_data.description) {
+                      return (
+                        <AnimeListItem key={listItem.id} data={listItem} />
+                      )
+                    } else {
+                      return null
+                    }
 
-              {
-                list?.map((listItem) => {
-                  if (listItem?.material_data?.poster_url && listItem.material_data.description) {
                     return (
-                      <AnimeListItem key={listItem.id} data={listItem} />
+                      <Paper key={listItem.id} className={styles.listItemContainer}>
+                        <Box width={145} minHeight={192} position={"relative"}>
+                          постера нет
+                        </Box>
+                        <Box>{listItem.title}</Box>
+                        <Box>{listItem.year}</Box>
+
+                      </Paper>
                     )
-                  } else {
-                    return null
-                  }
+                  })
+                }
 
-                  return (
-                    <Paper key={listItem.id} className={styles.listItemContainer}>
-                      <Box width={145} minHeight={192} position={"relative"}>
-                        постера нет
-                      </Box>
-                      <Box>{listItem.title}</Box>
-                      <Box>{listItem.year}</Box>
+                <Box ref={observe} margin={"24px 0"} display={'flex'} justifyContent={'center'}>
+                  <CircularProgress className={styles.loader}  />
+                </Box>
 
-                    </Paper>
-                  )
-                })
-              }
-
-              <Box ref={observe} margin={"24px 0"} display={'flex'} justifyContent={'center'}>
-                <CircularProgress className={styles.loader}  />
               </Box>
-
             </Box>
-          </Box>
-          }
+            }
+          </section>
 
 
         </Box>

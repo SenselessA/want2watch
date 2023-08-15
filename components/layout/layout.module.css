@@ -17,7 +17,7 @@
 
 .headerTitle {
     font-weight: 500;
-    font-size: 48px;
+    font-size: 36px;
     line-height: 1.235;
     letter-spacing: 0.02em;
     color: #FFECE0;
@@ -28,20 +28,20 @@
 .logo {
     position: relative;
     display: block;
-    width: 46px;
-    height: 46px;
+    width: 38px;
+    height: 38px;
 }
 
 @media screen and (max-width: 1200px) {
 
     .headerTitle {
         font-weight: 500;
-        font-size: 36px;
+        font-size: 28px;
     }
 
     .logo {
-        width: 36px;
-        height: 36px;
+        width: 28px;
+        height: 28px;
     }
 }
 
@@ -49,13 +49,13 @@
 
 @media screen and (max-width: 640px) {
     .logo {
-        width: 32px;
-        height: 32px;
+        width: 26px;
+        height: 26px;
     }
 
     .headerTitle {
         font-weight: 500;
-        font-size: 28px;
+        font-size: 26px;
     }
 }
 
@@ -67,6 +67,6 @@
 
     .headerTitle {
         font-weight: 500;
-        font-size: 22px;
+        font-size: 20px;
     }
 }

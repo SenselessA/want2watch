@@ -12,6 +12,7 @@ const SearchInput = ({searchValue, setSearchValue, size}) => {
 			sx={{
 				'& .MuiInputBase-colorPrimary': {
 					border: "2px solid #FBD2B9",
+					borderRadius: '12px',
 					'&:hover': {
 						borderColor: "#F48F51",
 					},
@@ -33,6 +34,7 @@ const SearchInput = ({searchValue, setSearchValue, size}) => {
 				),
 				className: styles.searchField,
 			}}
+			placeholder={'Поиск аниме'}
 			value={searchValue}
 			onChange={(e) => {
 				setSearchValue(e.target.value)
